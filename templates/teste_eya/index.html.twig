@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TesteEya index{% endblock %}
+
+{% block body %}
+    <h1>TesteEya index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Poids</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for teste_eya in teste_eyas %}
+            <tr>
+                <td>{{ teste_eya.id }}</td>
+                <td>{{ teste_eya.nom }}</td>
+                <td>{{ teste_eya.poids }}</td>
+                <td>
+                    <a href="{{ path('teste_eya_show', {'id': teste_eya.id}) }}">show</a>
+                    <a href="{{ path('teste_eya_edit', {'id': teste_eya.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('teste_eya_new') }}">Create new</a>
+{% endblock %}
