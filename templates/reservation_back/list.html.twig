@@ -1,0 +1,108 @@
+{% extends 'base-back.html.twig' %}
+
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-right">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+        <div class="user-info">
+            <img src="{{ asset('back/images/logo4.png') }}" alt="">
+            <p class="name">Mia Cucina </p>
+            <p class="designation">Admin</p>
+            <span class="online"></span>
+        </div>
+        <ul class="nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('back') }}">
+                    <img src="{{  asset('back/images/icons/1.png')}}" alt="">
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Utilisateur.html">
+                    <img src="{{asset('back/images/icons/04.png')}}" alt="">
+                    <span class="menu-title">Utilisateur</span>
+                </a>
+            </li>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('categorie_index') }}">
+                    <img src="{{ asset('back/images/icons/06.png')}}" alt="">
+                    <span class="menu-title">Categorie</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Produit.html">
+                    <img src="{{asset('back/images/icons/06.png')}}" alt="">
+                    <span class="menu-title">Produit</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" {{ path('commande_index') }}">
+                <img src="{{asset('back/images/icons/05.png')}}" alt="">
+                <span class="menu-title">Commande</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('lignecommande') }}">
+                    <img src="{{asset('back/images/icons/05.png')}}" alt="">
+                    <span class="menu-title">Ligne Commande</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('livreur')}}">
+                    <img src="{{asset('back/images/icons/01.png')}}" alt="">
+                    <span class="menu-title">Livreur</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('livraison')}}">
+                    <img src="{{asset('back/images/icons/01.png')}}" alt="">
+                    <span class="menu-title">Livraison</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Tables.html">
+                    <img src="{{asset('back/images/icons/02.png')}}" alt="">
+                    <span class="menu-title">Tables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Evenement.html">
+                    <img src="{{asset('back/images/icons/03.png')}}" alt="">
+                    <span class="menu-title">Evenement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pages/charts/index.html">
+                    <img src="{{asset('back/images/icons/6.png')}}" alt="">
+                    <span class="menu-title">Charts</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+    <h3 class="page-heading mb-4">Reservation</h3>
+
+    <div class="row mb-2">
+    <div class="col-lg-12">
+    <div class="card">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Reservation</h5>
+
+        <div class="column">  {{class.EmailResv}} </div>
+
+
+        <a class="btn btn-success mr-3" href="{{ path('reservation_back') }}">Retourner à la liste</a>
+
+
+
+    </div>
+{% endblock%}

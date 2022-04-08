@@ -1,8 +1,12 @@
+
+
+
 {% extends 'base-back.html.twig' %}
 
-{% block title %}Liste des emplacements{% endblock %}
+{% block title %}Ajouter un emplacement{% endblock %}
 
 {% block body %}
+    {% form_theme formEmp 'bootstrap_4_layout.html.twig' %}
     <!-- partial -->
     <div class="container-fluid">
         <div class="row row-offcanvas row-offcanvas-right">
@@ -90,43 +94,34 @@
 
             <!-- partial -->
             <div class="content-wrapper">
-                <h3 class="page-heading mb-4">Emplacement</h3>
+                <h3 class="page-heading mb-4">Emplacements</h3>
 
                 <div class="row mb-2">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title  ">La liste des emplacements</h5>
-                                <td><a href="{{ path('addEmp') }}" class="btn  btn-danger btn-sm my-5 " >ajouter</a></td>
+                                <h5 class="card-title mb-4">Ajouter un emplacement</h5>
                                 <div class="table-responsive">
                                     <table class="table center-aligned-table">
-                                        <thead>
-                                        <tr class="text-primary">
-                                            <th>type </th>
-                                            <th> description</th>
-                                        </tr>
-                                        {% for class in tabEmp %}
-                                            <tr>
-                                                <td>{{class.typeEmplacement}}</td>
-                                                <td>{{class.description}}</td>
-                                                <td><a href="{{ path('updateEmp',{'id':class.idEmplacement}) }}" class="btn btn-primary btn-sm"  >Mettre à jour</a>
-                                                    <a href="{{ path('supprimerEmp',{'id':class.idEmplacement}) }}" class="btn btn-dark btn-sm" > Supprimer</a>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                        </thead>
-                                        <tbody>
-                                        <tr class="">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
                                         </tbody>
+                                        <thead>
+                                        {{ form_start(formEmp,{'attr':{'novalidate': 'novalidate'}}) }}
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                {{ form_label(formEmp.type_emplacement, 'type_emplacement '|trans, {'label_attr' : {'class': '' }}) }}
+                                                {{ form_widget(formEmp.type_emplacement, {'attr': {'class': 'form-control p-input'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(formEmp.Description, 'Description'|trans, {'label_attr' : {'class': '' }}) }}
+                                                {{ form_widget(formEmp.Description, {'attr': {'class': 'form-control p-input'}}) }}
+                                            </div>
+                                        </div>
+                                        {{ form_widget(formEmp) }}
+
+
+                                        <a class="btn btn-success col-md-3" href="{{ path('liste_emplacements') }}">Retourner à la liste des emplacements</a>
+                                        {{ form_end(formEmp) }}
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -139,3 +134,6 @@
     </div>
 
 {% endblock %}
+
+
+

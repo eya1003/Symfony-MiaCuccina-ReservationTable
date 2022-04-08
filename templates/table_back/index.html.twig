@@ -1,20 +1,147 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-back.html.twig' %}
 
-{% block title %}Hello TableBackController!{% endblock %}
+{% block title %}Liste des tables{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <!-- partial -->
+    <div class="container-fluid">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+                <div class="user-info">
+                    <img src="{{ asset('back/images/logo4.png') }}" alt="">
+                    <p class="name">Mia Cucina </p>
+                    <p class="designation">Admin</p>
+                    <span class="online"></span>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('back') }}">
+                            <img src="{{  asset('back/images/icons/1.png')}}" alt="">
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Utilisateur.html">
+                            <img src="{{ asset('back/images/icons/04.png') }}" alt="">
+                            <span class="menu-title">Utilisateur</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Produit.html">
+                            <img src="{{ asset('back/images/icons/06.png') }}" alt="">
+                            <span class="menu-title">Categories</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Produit.html">
+                            <img src="{{ asset('back/images/icons/06.png') }}" alt="">
+                            <span class="menu-title">Produit</span>
+                        </a>
+                    </li>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/Reserver une table/src/Controller/TableBackController.php'|file_link(0) }}">src/Controller/TableBackController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/Reserver une table/templates/table_back/index.html.twig'|file_link(0) }}">templates/table_back/index.html.twig</a></code></li>
-    </ul>
-</div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Commande.html">
+                            <img src="{{ asset('back/images/icons/05.png') }}" alt="">
+                            <span class="menu-title">Commande</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Livraison.html">
+                            <img src="{{ asset('back/images/icons/01.png') }}" alt="">
+                            <span class="menu-title">Livraison</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('liste_emplacements') }}">
+                            <img src="{{ asset('back/images/icons/002-placeholder.png')}}" alt="">
+                            <span class="menu-title">Emplacements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('list_tables') }}">
+                            <img src="{{ asset('back/images/icons/02.png') }}" alt="">
+                            <span class="menu-title">Tables</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('reservation_back') }}">
+                            <img src="{{ asset('back/images/02.png') }}" alt="">
+                            <span class="menu-title">Reservation Tables</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Evenement.html">
+                            <img src="{{ asset('back/images/icons/03.png') }}" alt="">
+                            <span class="menu-title">Evenement</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/charts/index.html">
+                            <img src="{{ asset('back/images/icons/6.png') }}" alt="">
+                            <span class="menu-title">Charts</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <h3 class="page-heading mb-4">Table</h3>
+
+                <div class="row mb-2">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title  ">La liste des tables</h5>
+
+                                <td><a href="{{ path('addTable') }}" class="btn  btn-danger btn-sm my-5 " >ajouter</a></td>
+                                <a href="{{ path('StatCommande') }}"><button  type="button" class="btn btn-outline-info"> Statistique</button></a>
+                                <div class="table-responsive">
+                                    <table class="table center-aligned-table">
+                                        <thead>
+                                        <tr class="text-primary">
+                                            <th>Vue du table </th>
+                                            <th>Nombre des personnes</th>
+                                            <th>stock du table</th>
+                                        </tr>
+                                        {% for class in tabTable %}
+                                            <tr>
+                                                <td>{{class.emp}}</td>
+                                                <td>{{class.NbChaiseTab}}</td>
+                                                <td>{{class.StockTab}}</td>
+
+                                                <td><a href="{{ path('modifierTab',{'id':class.idTab}) }}" class="btn btn-primary btn-sm">Mettre à jour</a>
+                                                <td><a href="{{ path('supprimerTab',{'id':class.idTab}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </thead>
+                                        <tbody>
+                                        <tr class="">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 {% endblock %}

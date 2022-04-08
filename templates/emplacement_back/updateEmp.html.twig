@@ -1,0 +1,135 @@
+
+
+
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Ajouter un emplacement{% endblock %}
+
+{% block body %}
+    {% form_theme formEmp 'bootstrap_4_layout.html.twig' %}
+    <!-- partial -->
+    <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+        <div class="user-info">
+            <img src="{{ asset('back/images/logo4.png') }}" alt="">
+            <p class="name">Mia Cucina </p>
+            <p class="designation">Admin</p>
+            <span class="online"></span>
+        </div>
+        <ul class="nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('back') }}">
+                    <img src="{{  asset('back/images/icons/1.png')}}" alt="">
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Utilisateur.html">
+                    <img src="{{ asset('back/images/icons/04.png') }}" alt="">
+                    <span class="menu-title">Utilisateur</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Produit.html">
+                    <img src="{{ asset('back/images/icons/06.png') }}" alt="">
+                    <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Produit.html">
+                    <img src="{{ asset('back/images/icons/06.png') }}" alt="">
+                    <span class="menu-title">Produit</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Commande.html">
+                    <img src="{{ asset('back/images/icons/05.png') }}" alt="">
+                    <span class="menu-title">Commande</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Livraison.html">
+                    <img src="{{ asset('back/images/icons/01.png') }}" alt="">
+                    <span class="menu-title">Livraison</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('liste_emplacements') }}">
+                    <img src="{{ asset('back/images/icons/002-placeholder.png')}}" alt="">
+                    <span class="menu-title">Emplacements</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('list_tables') }}">
+                    <img src="{{ asset('back/images/icons/02.png') }}" alt="">
+                    <span class="menu-title">Tables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('reservation_back') }}">
+                    <img src="{{ asset('back/images/02.png') }}" alt="">
+                    <span class="menu-title">Reservation Tables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Evenement.html">
+                    <img src="{{ asset('back/images/icons/03.png') }}" alt="">
+                    <span class="menu-title">Evenement</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="pages/charts/index.html">
+                    <img src="{{ asset('back/images/icons/6.png') }}" alt="">
+                    <span class="menu-title">Charts</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- partial -->
+    <div class="content-wrapper">
+        <h3 class="page-heading mb-4">Emplacements</h3>
+
+        <div class="row mb-2">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Modifier l'emplacement</h5>
+                        <div class="table-responsive">
+                            <table class="table center-aligned-table">
+                                </tbody>
+                                <thead>
+                                {{ form_start(formEmp,{'attr':{'novalidate': 'novalidate'}}) }}
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        {{ form_label(formEmp.type_emplacement, 'type_emplacement '|trans, {'label_attr' : {'class': '' }}) }}
+                                        {{ form_widget(formEmp.type_emplacement, {'attr': {'class': 'form-control p-input'}}) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_label(formEmp.Description, 'dDescription'|trans, {'label_attr' : {'class': '' }}) }}
+                                        {{ form_widget(formEmp.Description, {'attr': {'class': 'form-control p-input'}}) }}
+                                    </div>
+                                </div>
+                                {{ form_widget(formEmp) }}
+
+
+                                <a class="btn btn-success " href="{{ path('liste_emplacements') }}">Retourner à la liste</a>
+                                {{ form_end(formEmp) }}
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}
+
+
+

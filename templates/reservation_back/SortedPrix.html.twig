@@ -1,6 +1,6 @@
 {% extends 'base-back.html.twig' %}
 
-{% block title %}Liste des emplacements{% endblock %}
+{% block title %}Liste des tables{% endblock %}
 
 {% block body %}
     <!-- partial -->
@@ -22,7 +22,6 @@
                         </a>
                     </li>
 
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Utilisateur.html">
                             <img src="{{ asset('back/images/icons/04.png') }}" alt="">
@@ -69,7 +68,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('reservation_back') }}">
                             <img src="{{ asset('back/images/02.png') }}" alt="">
-                            <span class="menu-title">Reservation Tables</span>
+                            <span class="menu-title">Reservation des tables</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -88,29 +87,45 @@
                 </ul>
             </nav>
 
+
             <!-- partial -->
             <div class="content-wrapper">
-                <h3 class="page-heading mb-4">Emplacement</h3>
+                <h3 class="page-heading mb-4">Table</h3>
 
                 <div class="row mb-2">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title  ">La liste des emplacements</h5>
-                                <td><a href="{{ path('addEmp') }}" class="btn  btn-danger btn-sm my-5 " >ajouter</a></td>
+                                {% for message in app.flashes('clear') %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Alo!</strong> {{ message }}
+                                    </div>
+                                {% endfor %}
+                                <h5 class="card-title  ">La liste des reservations</h5>
+                                <td><a href="{{ path('front_reservation') }}" class="btn  btn-danger btn-sm my-5 " > Ajouter </a>
+                                </td>
                                 <div class="table-responsive">
                                     <table class="table center-aligned-table">
                                         <thead>
                                         <tr class="text-primary">
-                                            <th>type </th>
-                                            <th> description</th>
+                                            <th>Date  </th>
+                                            <th>Emplacement </th>
+                                            <th>Numero du telephone</th>
+                                            <th>adresse email</th>
+
                                         </tr>
-                                        {% for class in tabEmp %}
+                                        {% for class in phonesorted%}
                                             <tr>
-                                                <td>{{class.typeEmplacement}}</td>
-                                                <td>{{class.description}}</td>
-                                                <td><a href="{{ path('updateEmp',{'id':class.idEmplacement}) }}" class="btn btn-primary btn-sm"  >Mettre à jour</a>
-                                                    <a href="{{ path('supprimerEmp',{'id':class.idEmplacement}) }}" class="btn btn-dark btn-sm" > Supprimer</a>
+                                                <td>{{class.DateResv|date(' d-m-Y ') }}</td>>
+                                                <td>{{class.TabResv}}</td>
+                                                <td>{{class.PhoneResv}}</td>
+                                                <td>{{class.EmailResv}}</td>
+
+                                                <td><a href="{{ path('modifierResv',{'id':class.idResv}) }}" class="btn btn-primary btn-sm">Mettre à jour</a>
+                                                <td><a href="{{ path('supprimerResv',{'id':class.idResv}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+
+
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -125,9 +140,20 @@
                                             <td></td>
                                             <td></td>
                                         </tr>
+                                        <!-- Pagination -->
 
+                                        <!-- /Pagination -->
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="wrap-btn-booking flex-c-m m-t-6">
+                                    <div class="t-center">
+                                        <td>
+
+                                            <a class="btn btn-success mr-3" href="{{ path('reservation_back') }}">Retourner à la liste</a>
+                                        </td>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

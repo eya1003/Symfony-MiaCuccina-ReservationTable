@@ -47,4 +47,15 @@ class TableRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function distinctVue(){
+        return $this->createQueryBuilder('cc')
+            ->select('identity(cc.emp)')
+            ->distinct()
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
 }

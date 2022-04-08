@@ -1,8 +1,12 @@
+
+
+
 {% extends 'base-back.html.twig' %}
 
-{% block title %}Liste des emplacements{% endblock %}
+{% block title %}Ajouter une table{% endblock %}
 
 {% block body %}
+    {% form_theme formTable 'bootstrap_4_layout.html.twig' %}
     <!-- partial -->
     <div class="container-fluid">
         <div class="row row-offcanvas row-offcanvas-right">
@@ -41,7 +45,6 @@
                             <span class="menu-title">Produit</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="Commande.html">
                             <img src="{{ asset('back/images/icons/05.png') }}" alt="">
@@ -90,43 +93,41 @@
 
             <!-- partial -->
             <div class="content-wrapper">
-                <h3 class="page-heading mb-4">Emplacement</h3>
+                <h3 class="page-heading mb-4">Tables</h3>
 
                 <div class="row mb-2">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title  ">La liste des emplacements</h5>
-                                <td><a href="{{ path('addEmp') }}" class="btn  btn-danger btn-sm my-5 " >ajouter</a></td>
+                                <h5 class="card-title mb-4">Ajouter une table</h5>
                                 <div class="table-responsive">
                                     <table class="table center-aligned-table">
-                                        <thead>
-                                        <tr class="text-primary">
-                                            <th>type </th>
-                                            <th> description</th>
-                                        </tr>
-                                        {% for class in tabEmp %}
-                                            <tr>
-                                                <td>{{class.typeEmplacement}}</td>
-                                                <td>{{class.description}}</td>
-                                                <td><a href="{{ path('updateEmp',{'id':class.idEmplacement}) }}" class="btn btn-primary btn-sm"  >Mettre à jour</a>
-                                                    <a href="{{ path('supprimerEmp',{'id':class.idEmplacement}) }}" class="btn btn-dark btn-sm" > Supprimer</a>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                        </thead>
-                                        <tbody>
-                                        <tr class="">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-
                                         </tbody>
+                                        <thead>
+                                        {{ form_start(formTable,{'attr':{'novalidate': 'novalidate'}}) }}
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                {{ form_label(formTable.emp, 'Emplacement'|trans, {'label_attr' : {'class': '' }}) }}
+                                                {{ form_widget(formTable.emp, {'attr': {'class': 'form-control p-input'}}) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_label(formTable.nb_chaise_tab, 'Nombre des personnes'|trans, {'label_attr' : {'class': '' }}) }}
+                                                {{ form_widget(formTable.nb_chaise_tab, {'attr': {'class': 'form-control p-input'}}) }}
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                {{ form_label(formTable.stock_tab, 'Stock  '|trans, {'label_attr' : {'class': '' }}) }}
+                                                {{ form_widget(formTable.stock_tab, {'attr': {'class': 'form-control p-input'}}) }}
+                                            </div>
+                                        </div>
+                                        {{ form_widget(formTable) }}
+
+                                        <a class="btn btn-success mr-3" href="{{ path('list_tables') }}">Retourner à la liste </a>
+                                        <a class="btn btn-success btn-dark " href="{{ path('addEmp') }}">Ajouter un emplacement</a>
+                                        {{ form_end(formTable) }}
+                                        </thead>
+
                                     </table>
                                 </div>
                             </div>
@@ -139,3 +140,6 @@
     </div>
 
 {% endblock %}
+
+
+
